@@ -31,6 +31,7 @@ if (isset($_GET['cari'])) {
                 "cover_bk" => $row['cover_bk']
             ];
             $response['body']['data'][] = $searchResult;
+            
         }
     } else {
         $response['status'] = 401;
