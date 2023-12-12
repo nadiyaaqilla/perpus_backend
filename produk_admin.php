@@ -7,7 +7,7 @@ $respon = [
     ]
 ];
 
-$koneksi = mysqli_connect("localhost", "root", "", "e-perpus");
+include "env.php";
 
 if (isset($_POST['submit'])) {
     $judul = $_POST['judul_bk'];
