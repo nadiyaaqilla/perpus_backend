@@ -15,11 +15,11 @@ if (isset($_POST['submit'])) {
     $kategori = $_POST['nama_kategori'];
     $sinopsis = $_POST['sinop_bk'];
     $cover = $_FILES['cover_bk'];
-    $coverDir = "../file/img/";
+    $coverDir = "../assets/img/";
     $targetcover = $coverDir . basename($_FILES["cover_bk"]["name"]);
     move_uploaded_file($_FILES["cover_bk"]["tmp_name"], $targetcover);
     $file_bk = $_FILES['file_bk'];
-    $fileDir = "../file/";
+    $fileDir = "../assets/file/";
     $targetFile = $fileDir . basename($_FILES["file_bk"]["name"]);
     move_uploaded_file($_FILES["file_bk"]["tmp_name"], $targetFile);
 
