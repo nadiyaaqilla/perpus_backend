@@ -15,7 +15,7 @@ if (isset($_GET['isbn'])) {
     $isbn = mysqli_real_escape_string($koneksi, $_GET['isbn']);
     
     // Use prepared statement to prevent SQL injection
-    $query = mysqli_prepare($koneksi, "SELECT * FROM data_buku WHERE isbn_bk = ?");
+    $query = mysqli_prepare($koneksi, "SELECT * FROM data_buku, kategori WHERE data_buku.kode = kategori.kode AND isbn_bk = ?");
     
     // Bind the ISBN parameter to the statement
     mysqli_stmt_bind_param($query, "s", $isbn);
@@ -32,7 +32,7 @@ if (isset($_GET['isbn'])) {
             $bookData = [
                 "isbn_bk" => $row['isbn_bk'],
                 "judul_bk" => $row['judul_bk'],
-                "nama_kategori" => $row['nama_kategori'],
+                "kode" => $row['nama'],
                 "penulis_bk" => $row['penulis_bk'],
                 "sinop_bk" => $row['sinop_bk'],
                 "cover_bk" => $row['cover_bk'],
