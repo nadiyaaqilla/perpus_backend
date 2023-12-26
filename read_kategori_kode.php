@@ -1,13 +1,8 @@
 <?php
 
-// Database connection (similar to insert_kategori.php)
 include "env.php";
 
-if ($koneksi->connect_error) {
-    die("Connection failed: " . $koneksi->connect_error);
-}
 
-// Check if the 'id' parameter is provided in the URL
 if (isset($_GET['kode'])) {
     $kode = $_GET['kode'];
 
