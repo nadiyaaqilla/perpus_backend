@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2023 at 03:10 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Dec 20, 2023 at 02:53 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,19 +28,20 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `kategori` (
-  `id_kat` int(20) NOT NULL,
-  `nama_kategori` varchar(150) NOT NULL
+  `kode` int(20) NOT NULL,
+  `nama` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `kategori`
 --
 
-INSERT INTO `kategori` (`id_kat`, `nama_kategori`) VALUES
-(1, 'novel'),
-(2, 'cerpen'),
-(3, 'komik'),
-(4, 'pelajaran');
+INSERT INTO `kategori` (`kode`, `nama`) VALUES
+(17, 'komik'),
+(18, 'Novel'),
+(20, 'Pendidikan'),
+(30, 'non'),
+(31, 'nonn');
 
 --
 -- Indexes for dumped tables
@@ -50,7 +51,7 @@ INSERT INTO `kategori` (`id_kat`, `nama_kategori`) VALUES
 -- Indexes for table `kategori`
 --
 ALTER TABLE `kategori`
-  ADD PRIMARY KEY (`id_kat`);
+  ADD PRIMARY KEY (`kode`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -60,7 +61,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kat` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `kode` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
