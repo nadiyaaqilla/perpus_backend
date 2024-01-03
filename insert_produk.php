@@ -62,7 +62,7 @@ $res = [
        
       } else {
         $res['status'] = 401;
-        $res['msg'] = "Gagal membuat kategori";
+        $res['msg'] = "Proses insert gagal";
         $res['body']['error'] = "Kesalahan validasi input";
       }
     
