@@ -36,13 +36,6 @@ CREATE TABLE `kategori` (
 -- Dumping data for table `kategori`
 --
 
-INSERT INTO `kategori` (`kode`, `nama`) VALUES
-(17, 'komik'),
-(18, 'Novel'),
-(20, 'Pendidikan'),
-(30, 'non'),
-(31, 'nonn');
-
 --
 -- Indexes for dumped tables
 --
