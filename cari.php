@@ -15,9 +15,12 @@ if (isset($_GET['search'])) {
     $search = mysqli_real_escape_string($koneksi, $_GET['search']);
 
     // Perform a search query (replace with your actual query)
-    $query = "SELECT * FROM data_buku, kategori WHERE data_buku.kode = kategori.kode AND judul_bk LIKE '%$search%' OR sinop_bk LIKE '%$search%'";
+    $query = "SELECT * FROM data_buku
+              JOIN kategori ON data_buku.kode = kategori.kode
+              WHERE judul_bk LIKE '%$search%' OR sinop_bk LIKE '%$search%'";
     $result = mysqli_query($koneksi, $query);
 
+    
     $searchResults = [];
 
     if ($result) {
