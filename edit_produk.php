@@ -31,45 +31,42 @@ if (!$koneksi) {
     $sinop_bk = mysqli_real_escape_string($koneksi, $_POST['sinop_bk']);
 
     // cek apakah user pilih cover_bk baru atau tidak
-    if ($_FILES["cover_bk"]["name"] != "") {
-        // ambil nama cover_bk lama
-        $result = mysqli_query($koneksi, "SELECT cover_bk FROM data_buku WHERE isbn_bk = '$isbn_bk'");
-        $data = mysqli_fetch_assoc($result);
-        $cover_bk = $data['cover_bk'];
+if ($_FILES["cover_bk"]["name"] != "") {
+    // ambil nama cover_bk lama
+    $result = mysqli_query($koneksi, "SELECT cover_bk FROM data_buku WHERE isbn_bk = '$isbn_bk'");
+    $data = mysqli_fetch_assoc($result);
+    $cover_bk = $data['cover_bk'];
 
-        
-        // hapus cover_bk lama
-        unlink($cover_bk);
+    // hapus cover_bk lama
+    unlink('file/img/' . $cover_bk);
 
-        // upload cover_bk baru
-        $temp = explode(".", $_FILES["cover_bk"]["name"]);
-        $namacover_bkBaru = md5(date('dmy h:i:s')) . '.' . end($temp);
-        $target_file = "file/" . $namacover_bkBaru;
-        move_uploaded_file($_FILES["cover_bk"]["tmp_name"], $target_file);
+    // gunakan nama file baru yang diterima dari pengguna
+    $namacover_bkBaru = $_FILES["cover_bk"]["name"];
+    $target_file = "file/img/" . $namacover_bkBaru;
+    move_uploaded_file($_FILES["cover_bk"]["tmp_name"], $target_file);
 
-        $response['body']['data']['cover_bk'] = 'file/img/' . $namacover_bkBaru;
-        mysqli_query($koneksi, "UPDATE data_buku SET cover_bk = 'file/img/$namacover_bkBaru' WHERE isbn_bk = '$isbn_bk'");
-    }
+    $response['body']['data']['cover_bk'] = 'file/img/' . $namacover_bkBaru;
+    mysqli_query($koneksi, "UPDATE data_buku SET cover_bk = '$namacover_bkBaru' WHERE isbn_bk = '$isbn_bk'");
+}
 
-    // cek apakah user pilih file_bk baru atau tidak
-    if ($_FILES["file_bk"]["name"] != "") {
-        // ambil nama file_bk lama
-        $result = mysqli_query($koneksi, "SELECT file_bk FROM data_buku WHERE isbn_bk = '$isbn_bk'");
-        $data = mysqli_fetch_assoc($result);
-        $file_bk = $data['file_bk'];
+// cek apakah user pilih file_bk baru atau tidak
+if ($_FILES["file_bk"]["name"] != "") {
+    // ambil nama file_bk lama
+    $result = mysqli_query($koneksi, "SELECT file_bk FROM data_buku WHERE isbn_bk = '$isbn_bk'");
+    $data = mysqli_fetch_assoc($result);
+    $file_bk = $data['file_bk'];
 
-        // hapus file_bk lama
-        unlink($file_bk);
+    // hapus file_bk lama
+    unlink('file/' . $file_bk);
 
-        // upload file_bk baru
-        $temp = explode(".", $_FILES["file_bk"]["name"]);
-        $namafile_bkBaru = md5(date('dmy h:i:s')) . '.' . end($temp);
-        $target_file = "file/" . $namafile_bkBaru;
-        move_uploaded_file($_FILES["file_bk"]["tmp_name"], $target_file);
+    // gunakan nama file baru yang diterima dari pengguna
+    $namafile_bkBaru = $_FILES["file_bk"]["name"];
+    $target_file = "file/" . $namafile_bkBaru;
+    move_uploaded_file($_FILES["file_bk"]["tmp_name"], $target_file);
 
-        $response['body']['data']['file_bk'] = 'file/' . $namafile_bkBaru;
-        mysqli_query($koneksi, "UPDATE data_buku SET file_bk = 'file/$namafile_bkBaru' WHERE isbn_bk = '$isbn_bk'");
-    }
+    $response['body']['data']['file_bk'] = 'file/' . $namafile_bkBaru;
+    mysqli_query($koneksi, "UPDATE data_buku SET file_bk = '$namafile_bkBaru' WHERE isbn_bk = '$isbn_bk'");
+}
 
     $response['status'] = 200;
     $response['msg'] = 'data berhasil diperbarui';
